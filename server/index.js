@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from './morgan.js';
+import mongoose from 'mongoose';
 
 dotenv.config();
 
@@ -24,15 +25,14 @@ app.get('/', (req, res) => {
 
 // MongoDB server
 
-// const connect = async () => {
-//   try {
-//     await mongoose.connect(process.env.MONGODB_URL);
-//   } catch (error) {
-//     console.log(error);
-//     throw error;
-
-//   }
-// };
+const connect = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URL);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
 
 // mongoose.connection.on('connected', (connection) => {
 //   console.log('mongoDB connected!');
