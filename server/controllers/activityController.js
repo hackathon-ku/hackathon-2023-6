@@ -28,7 +28,21 @@ export const getActivityById = async (req, res, next) => {
 
 export const getActivityBy = async (req, res, next) => {
   try {
-    const activities = await Activity.find(req.body);
+    let { searchText, filter } = req.body;
+    if (!filter) {
+      filter = {};
+    }
+    const activities = await Activity.find({
+      $and: [
+        {
+          $or: [
+            { activity_id: { $regex: searchText } },
+            { activity_name: { $regex: searchText } },
+          ],
+        },
+        { ...filter },
+      ],
+    });
     res.status(200).json(activities);
   } catch (error) {
     next(error);

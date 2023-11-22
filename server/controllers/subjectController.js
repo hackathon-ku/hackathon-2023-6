@@ -14,7 +14,22 @@ export const getSubjectId = async (req, res, next) => {
 
 export const getSubjectBy = async (req, res, next) => {
   try {
-    const subjects = await Subject.find(req.body);
+    let { searchText, filter } = req.body;
+    if (!filter) {
+      filter = {};
+    }
+    const subjects = await Subject.find({
+      $and: [
+        {
+          $or: [
+            { subject_id: { $regex: searchText } },
+            { subject_name_th: { $regex: searchText } },
+            { subject_name_en: { $regex: searchText } },
+          ],
+        },
+        { ...filter },
+      ],
+    });
     res.status(200).json(subjects);
   } catch (error) {
     next(error);
