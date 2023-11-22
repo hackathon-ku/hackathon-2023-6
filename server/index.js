@@ -23,7 +23,7 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to backend.' });
+  res.json({ message: 'Welcome to backend!.' });
 });
 
 // MongoDB server
