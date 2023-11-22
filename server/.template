@@ -1,0 +1,17 @@
+// User Template
+
+{
+  "std_id": "6310503537",
+  "first_name_th": "รวิชญ์",
+  "last_name_th": "พยัคฆวรรณ",
+  "first_name_en": "Rawitch",
+  "last_name_en": "Payakkawan",
+  "gender":1,
+  "profile_pic":"",
+  "faculty_id":"05",
+  "department_id":"03",
+  "major_id":"09",
+  "campus_id":"1",
+  "email":"rawitch.p@ku.th",
+  "password": "$2a$10$Vr68Glkd/4ZXAPAWaMagT.Ai6J0JxCvrGKzhf2kNOaB9ZHKM8660."  // admin123
+}
