@@ -7,9 +7,8 @@ import majorModel from '../models/majorModel.js';
 
 export const login = async (req, res, next) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ std_id: req.body.std_id.slice(1) });
     if (!user) return res.status(404).send({ message: 'User not found.' });
-
     const isPasswordCorrect = await bcrypt.compare(
       req.body.password,
       user.password
@@ -18,7 +17,7 @@ export const login = async (req, res, next) => {
     if (!isPasswordCorrect)
       return res.status(400).send({ message: 'Wrong username or password.' });
     const token = jwt.sign(
-      { id: user._id, isAdmin: user.isAdmin },
+      { _id: user._id, std_id: user.std_id },
       process.env.JWT
     );
     const department = await departmentModel.findOne({

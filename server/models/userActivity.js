@@ -3,6 +3,7 @@ const { Schema } = mongoose;
 
 const UserActivitySchema = new Schema({
   std_id: { type: String, required: true },
+  is_passed: { type: Boolean, required: true },
   activity: {
     university: {
       activity: { type: Array },

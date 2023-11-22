@@ -1,6 +1,7 @@
 import express from 'express';
 import {
   createActivity,
+  deleteActivity,
   getActivityBy,
   getActivityById,
   getUserActivity,
@@ -16,6 +17,8 @@ router.get('/', getActivityBy);
 
 //GET BY ID
 router.get('/:activity_id', getActivityById);
+
+router.delete('/:activity_id', deleteActivity);
 
 router.get('/user/:std_id', getUserActivity);
 
