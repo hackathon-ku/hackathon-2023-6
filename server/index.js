@@ -5,6 +5,9 @@ import morgan from './morgan.js';
 import mongoose from 'mongoose';
 import userRoute from './routes/userRoute.js';
 import authRoute from './routes/authRoute.js';
+import activityRoute from './routes/activityRoute.js';
+import subjectRoute from './routes/subjectRoute.js';
+import courseRoute from './routes/courseRoute.js';
 import { verifyAccessToken } from './helper.js';
 
 dotenv.config();
@@ -48,6 +51,12 @@ const connect = async () => {
 app.use('/auth', authRoute);
 
 app.use('/user', verifyAccessToken, userRoute);
+
+app.use('/course', verifyAccessToken, courseRoute);
+
+app.use('/activity', verifyAccessToken, activityRoute);
+
+app.use('/subject', verifyAccessToken, subjectRoute);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, async () => {
