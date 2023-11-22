@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const ActivitySchema = new Schema({
+  std_id: { type: String, require: true },
   activity_id: { type: String, require: true },
   activity_name: { type: String, required: true },
   activity_type: { type: String, required: true },
