@@ -9,7 +9,7 @@ export function verifyAccessToken(req, res, next) {
   }
   const authHeader = req.headers['authorization'];
   const token = authHeader.split(' ')[1];
-  jwt.verify(token, process.env.TOKEN_SECRET, (err, payload) => {
+  jwt.verify(token, process.env.JWT, (err, payload) => {
     if (err) {
       return res.status(401).send({ message: 'Invalid Access Token.' });
     }

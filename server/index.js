@@ -3,6 +3,9 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from './morgan.js';
 import mongoose from 'mongoose';
+import userRoute from './routes/userRoute.js';
+import authRoute from './routes/authRoute.js';
+import { verifyAccessToken } from './helper.js';
 
 dotenv.config();
 
@@ -41,6 +44,10 @@ const connect = async () => {
 // mongoose.connection.on('disconnected', (connection) => {
 //   console.log('mongoDB disconnected!');
 // });
+
+app.use('/auth', authRoute);
+
+app.use('/user', verifyAccessToken, userRoute);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, async () => {
