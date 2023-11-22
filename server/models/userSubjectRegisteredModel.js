@@ -3,6 +3,7 @@ const { Schema } = mongoose;
 
 const UserSubjectRegisteredSchema = new Schema({
   std_id: { type: String, required: true },
+  is_passed: { type: Boolean, required: true },
   general: {
     wellness: {
       subject: { type: Array },
