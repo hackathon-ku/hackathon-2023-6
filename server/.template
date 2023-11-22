@@ -15,3 +15,176 @@
   "email":"rawitch.p@ku.th",
   "password": "$2a$10$Vr68Glkd/4ZXAPAWaMagT.Ai6J0JxCvrGKzhf2kNOaB9ZHKM8660."  // admin123
 }
+
+// Course Template
+
+{
+    "course_id": "1",
+    "required_subject":{
+      "general":{
+        "wellness_credits":7,
+        "entrepreneurship_credits":3,
+        "lang_credits":15,
+        "citizen_credits":2,
+        "aesthetics_credits":3
+      },
+      "specialized":{
+        "core_credits":32,
+        "special_credits":54,
+        "selected_credits":16
+      },
+      "free": 6
+    }
+}
+
+// Faculty
+
+{
+    "faculty_id": "05",
+    "departments": ["09"],
+    "faculty_name_th": "คณะวิศวกรรมศาสตร์",
+    "faculty_name_en": "Faculty of Engineering"
+}
+
+// Department
+
+{
+    "department_id": "09",
+    "majors": ["09"],
+    "department_name_th": "ภาควิชาวิศวกรรมคอมพิวเตอร์",
+    "department_name_en": "Department of Computer Engineering"
+}
+
+// Major
+
+{
+    "major_id": "09",
+    "course_id": "1",
+    "major_name_th": "วิศวกรรมคอมพิวเตอร์",
+    "major_name_en":"Computer Engineering"
+}
+
+// Subject
+
+{
+    "subject_id": "01999033",
+    "subject_name_th": "ศิลปะการดำเนินชีวิต",
+    "subject_name_en": "Arts of Living",
+    "subject_type": "general",
+    "subject_group": "wellness",
+    "credit": 3
+}
+
+// UserSubjectRegistered
+
+{
+    "std_id": "6310503537",
+    "general": {
+      "wellness": {
+        "subject": [],
+        "credits": { "$numberInt": "0" }
+      },
+      "entrepreneurship": {
+        "subject": [],
+        "credits": { "$numberInt": "0" }
+      },
+      "lang": {
+        "subject": [],
+        "credits": { "$numberInt": "0" }
+      },
+      "citizen": {
+        "subject": [],
+        "credits": { "$numberInt": "0" }
+      },
+      "aesthetics": {
+        "subject": [],
+        "credits": { "$numberInt": "0" }
+      }
+    },
+    "specialized": {
+      "core": {
+        "subject": [],
+        "credits": { "$numberInt": "0" }
+      },
+      "special": {
+        "subject": [],
+        "credits": { "$numberInt": "0" }
+      },
+      "selected": {
+        "subject": [],
+        "credits": { "$numberInt": "0" }
+      }
+    },
+    "free": {
+      "subject": [],
+      "credits": { "$numberInt": "0" }
+    },
+    "required_activity": {
+        "university": 4,
+        "ability": {
+          "moral": 1,
+          "learning": 1,
+          "commu": 1,
+          "health": 1
+        },
+        "social": 1
+    }
+}
+
+// Activity
+
+{
+    "activity_id": "1",
+    "activity_name": "ทำความสะอาดภาควิชา",
+    "activity_type": "social",
+    "activity_group": "-",
+    "hours": 16,
+    "location": "location",
+    "detail": "detail",
+    "register_date": {
+      "start_date": "2011-10-05T14:48:00.000Z",
+      "end_date": "2011-10-12T14:48:00.000Z"
+    },
+    "event_date": {
+      "start_date": "2011-12-05T14:48:00.000Z",
+      "end_date": "2011-13-05T14:48:00.000Z"
+    },
+    "activity_for": "สำหรับทุกคน",
+    "hilights": "hilights",
+    "link": "https://www.google.com/",
+    "activity_image": "https://nypost.com/wp-content/uploads/sites/2/2022/03/Best-House-Cleaning-Products-feature-image.jpg?quality=75&strip=all"
+}
+
+// UserActivity
+
+{
+    "std_id": "6310503537",
+    "activity": {
+      "university": {
+        "activity": [],
+        "count": 0
+      },
+      "ability": {
+        "moral": {
+          "activity": [],
+          "count": 0
+        },
+        "learning": {
+          "activity": ["2"],
+          "count": 1
+        },
+        "commu": {
+          "activity": [],
+          "count": 0
+        },
+        "health": {
+          "activity": [],
+          "count": 0
+        }
+      },
+      "social": {
+        "activity": ["1"],
+        "count": 1
+      }
+    }
+}
