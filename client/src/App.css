@@ -37,4 +37,16 @@
   }
 }
 
+.MuiPickersCalendarHeader-root {
+  background-color: #d6df97;
+  border-radius: 5px;
+  margin: 0 !important;
+}
 
+/* .MuiButtonBase-root[aria-selected='true'] {
+  color: white !important;
+}
+.MuiButtonBase-root[aria-selected='true'] .MuiTouchRipple-root {
+  color: white !important;
+  background-color: #d6df97 !important;
+} */

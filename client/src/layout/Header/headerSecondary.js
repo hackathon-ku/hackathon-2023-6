@@ -13,7 +13,7 @@ const HeaderSecondary = ({ headerName, previousPage, favAble, favPage }) => {
   const handleClick = (page) => {
     navigate(page);
   };
-
+  
   return (
     <div className="bg-primaryGreen-200 p-7 rounded-b-lg drop-shadow-xl mb-2 flex items-center justify-between">
       <div onClick={() => handleGoBack()}>
