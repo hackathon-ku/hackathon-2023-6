@@ -30,7 +30,7 @@ const SubjectFavorite = () => {
 
         <div className="flex justify-end my-2">
           <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
+            <FormControl fullWidth size="small">
               <InputLabel id="demo-simple-select-label">Menu</InputLabel>
               <Select
                 labelId="demo-simple-select-label"

@@ -3,11 +3,39 @@ import { AiOutlineFileSearch } from "react-icons/ai";
 import { LiaIdCardAltSolid } from "react-icons/lia";
 import { useNavigate } from "react-router-dom";
 
-const FooterSecondary = ({ leftPage, rightPage }) => {
+const FooterSecondary = ({
+  leftPageName,
+  rightPageName,
+  leftPage,
+  rightPage,
+}) => {
   const navigate = useNavigate();
 
   const handleNavigate = (page) => {
     navigate(page);
+  };
+
+  const icons = [
+    {
+      pageName: "Registration Report",
+      icon: <LiaIdCardAltSolid size={30} />,
+    },
+    {
+      pageName: "Subject Search",
+      icon: <AiOutlineFileSearch size={30} />,
+    },
+    {
+      pageName: "Activity Transcript",
+      icon: <AiOutlineFileSearch size={30} />,
+    },
+    {
+      pageName: "KU Event",
+      icon: <AiOutlineFileSearch size={30} />,
+    },
+  ];
+
+  const iconUse = (page) => {
+    return icons.find((item) => item.pageName === page);
   };
 
   return (
@@ -19,11 +47,11 @@ const FooterSecondary = ({ leftPage, rightPage }) => {
               className="rounded-full bg-secondaryGreen-50 p-3 cursor-pointer"
               onClick={() => handleNavigate(leftPage)}
             >
-              <LiaIdCardAltSolid size={30} />
+              {iconUse(leftPageName).icon}
             </button>
           </div>
           <p className="text-center text-xs text-[0.6rem] pt-2 ">
-            Registration Report
+            {leftPageName}
           </p>
         </div>
 
@@ -33,11 +61,11 @@ const FooterSecondary = ({ leftPage, rightPage }) => {
               className="rounded-full bg-secondaryGreen-50 p-3 cursor-pointer"
               onClick={() => handleNavigate(rightPage)}
             >
-              <AiOutlineFileSearch size={30} />
+              {iconUse(rightPageName).icon}
             </button>
           </div>
           <p className="text-center text-xs text-[0.6rem] pt-2 ">
-            Subject Search
+            {rightPageName}
           </p>
         </div>
       </div>

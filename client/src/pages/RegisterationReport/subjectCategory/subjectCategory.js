@@ -1,68 +1,62 @@
 import React from "react";
 
-import { styled } from "@mui/material/styles";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-import MuiAccordion from "@mui/material/Accordion";
-import MuiAccordionSummary from "@mui/material/AccordionSummary";
-import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-
-const Accordion = styled((props) => (
-  <MuiAccordion disableGutters elevation={0} square {...props} />
-))(({ theme }) => ({
-  border: `1px solid ${theme.palette.divider}`,
-  "&:not(:last-child)": {
-    borderBottom: 0,
-  },
-  "&:before": {
-    display: "none",
-  },
-}));
-
-const AccordionSummary = styled((props) => (
-  <MuiAccordionSummary
-    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
-    {...props}
-  />
-))(({ theme }) => ({
-  backgroundColor: "#d6df97",
-  // theme.palette.mode === "dark"
-  //   ? "rgba(255, 255, 255, .05)"
-  //   : "rgba(0, 0, 0, .03)",
-  flexDirection: "row",
-  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-    transform: "rotate(90deg)",
-  },
-  "& .MuiAccordionSummary-content": {
-    marginLeft: theme.spacing(1),
-  },
-}));
-
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-  padding: theme.spacing(2),
-  borderTop: "1px solid rgba(0, 0, 0, .125)",
-  backgroundColor: "#e8edc5",
-}));
+import {
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
+} from "@material-tailwind/react";
 
 const SubjectCategory = () => {
-  const [expanded, setExpanded] = React.useState("panel1");
+  const [open, setOpen] = React.useState(1);
 
-  const handleChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false);
-  };
+  const handleOpen = (value) => setOpen(open === value ? 0 : value);
+
+  // const [expanded, setExpanded] = React.useState("panel1");
+
+  // const handleChange = (panel) => (event, newExpanded) => {
+  //   setExpanded(newExpanded ? panel : false);
+  // };
 
   return (
     <>
-      <div className="me-2">
-        <div className="grid grid-cols-2 mx-4 ">
+      <div className="m-2">
+        <div className="grid grid-cols-2 ">
           <div className="flex justify-center bg-greyCustom-200 rounded-tl-md p-1">
-            หมวดวิชาศึกษาทั่วไป
+            หมวดการศึกษาทั่วไป
           </div>
           <div className="flex justify-center bg-greyCustom-50 rounded-tr-md p-1">
             30/30
           </div>
         </div>
-        <Accordion
+        <Accordion open={open === 1}>
+          <AccordionHeader
+            className="bg-secondaryGreen-200 font-normal text-sm flex justify-between border"
+            onClick={() => handleOpen(1)}
+          >
+            <div className="flex ms-1">
+              <span>กลุ่มสาระอยู่ดีมีสุข</span>
+            </div>
+
+            <div className="px-10"></div>
+
+            <div>
+              <span>3/3</span>
+              <span></span>
+            </div>
+          </AccordionHeader>
+          <AccordionBody className=" bg-secondaryGreen-50 font-normal text-sm ">
+            <div className="m-2">Information</div>
+          </AccordionBody>
+        </Accordion>
+      </div>
+    </>
+  );
+};
+
+export default SubjectCategory;
+
+{
+  /* <Accordion
           expanded={expanded === "panel1"}
           onChange={handleChange("panel1")}
           className="mx-4 bg-secondaryGreen-200 mb-3"
@@ -82,10 +76,5 @@ const SubjectCategory = () => {
               </div>
             </Typography>
           </AccordionDetails>
-        </Accordion>
-      </div>
-    </>
-  );
-};
-
-export default SubjectCategory;
+        </Accordion> */
+}
