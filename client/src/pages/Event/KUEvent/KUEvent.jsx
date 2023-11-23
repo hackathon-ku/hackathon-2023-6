@@ -102,6 +102,8 @@ const SubjectSearch = () => {
       </div>
 
       <FooterSecondary
+        leftPageName={"Registration Report"}
+        rightPageName={"Subject Search"}
         leftPage={'/menu/registrationReport'}
         rightPage={'/menu/subjectSearch'}
       />

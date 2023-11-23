@@ -15,11 +15,9 @@ const RegisIndex = () => {
           หน่วยกิจสะสม
         </div>
         <div className="flex justify-center bg-[#9be4db] rounded-e-md p-1">
-          57
+          6
         </div>
       </div>
-
-      <SubjectCategory />
 
       <SubjectCategory />
 
