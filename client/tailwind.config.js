@@ -38,6 +38,22 @@ module.exports = withMT({
         700: "#585b5e",
         800: "#4a4b4f",
       },
+      purple: {
+        50: "#DFC6FF",
+        900: "#BF8EFF",
+      },
+      blue: {
+        50: "#cbe9ff",
+        900: "#97d3ff",
+      },
+      yellow: {
+        50: "#ffecc6",
+        900: "#ffd98e",
+      },
+      pink: {
+        50: "#ffcef4",
+        900: "#ff9be9",
+      },
     },
     extend: {},
   },

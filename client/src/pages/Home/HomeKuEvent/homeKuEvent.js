@@ -1,7 +1,5 @@
 import React from "react";
-import HeaderSecondary from "../../../layout/Header/headerSecondary";
-import FooterSecondary from "../../../layout/Footer/footerSecondary";
-import { Input } from "@material-tailwind/react";
+import { FaAngleRight } from "react-icons/fa6";
 
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
@@ -9,9 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import SubjectElement from "../subjectElement/subjectElement";
-
-const SubjectSearch = () => {
+const HomeKuEvent = () => {
   const [menu, setMenu] = React.useState("");
 
   const handleChange = (event) => {
@@ -20,19 +16,20 @@ const SubjectSearch = () => {
 
   return (
     <>
-      <HeaderSecondary
-        headerName={"Subject Search"}
-        previousPage={"/menu/registrationReport"}
-        favAble={true}
-        favPage={"/menu/subjectFavorite"}
-      />
-
-      <div className="m-3">
-        <div>
-          <Input label="Search" />
+      <div className="m-2 flex">
+        <div className="bg-[#d9d9d9] p-1"></div>
+        <div className="bg-[#d5f2df] flex justify-between w-full p-2">
+          <div>KU Event</div>
+          <div className="flex gap-1">
+            <button className="mt-1">
+              <FaAngleRight />
+            </button>
+          </div>
         </div>
+      </div>
 
-        <div className="flex justify-end my-2">
+      <div>
+        <div className="flex justify-end m-2">
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth size="small">
               <InputLabel id="demo-simple-select-label">Menu</InputLabel>
@@ -50,20 +47,9 @@ const SubjectSearch = () => {
             </FormControl>
           </Box>
         </div>
-
-        <div>
-          <SubjectElement />
-        </div>
       </div>
-
-      <FooterSecondary
-        leftPageName={"Registration Report"}
-        rightPageName={"Subject Search"}
-        leftPage={"/menu/registrationReport"}
-        rightPage={"/menu/subjectSearch"}
-      />
     </>
   );
 };
 
-export default SubjectSearch;
+export default HomeKuEvent;
