@@ -1,11 +1,40 @@
-import React from "react";
-import { BiSolidReport } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
-const MenuElement = ({ name }) => {
-  const navigate = useNavigate();
-  const handleClick = (page) => {
-    navigate(page);
+import { BiSolidReport } from "react-icons/bi";
+
+import { FaRegStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+
+const HomeMenuElement = ({ name }) => {
+  const [star, setStar] = useState(false);
+
+  useEffect(() => {
+    const favCheck = JSON.parse(localStorage.getItem("favoriteMenu"));
+    if (favCheck) {
+      if (favCheck.find((item) => item === name)) {
+        setStar(true);
+      }
+    }
+  }, []);
+
+  const handleClick = (likeMenu) => {
+    let favList = JSON.parse(localStorage.getItem("favoriteMenu"));
+    if (!favList) {
+      localStorage.setItem("favoriteMenu", JSON.stringify([likeMenu]));
+      return;
+    } else {
+      if (favList.find((item) => item === name)) {
+        setStar(false);
+        favList = favList.filter((item) => item !== name);
+        localStorage.setItem("favoriteMenu", JSON.stringify(favList));
+      } else {
+        setStar(true);
+        localStorage.setItem(
+          "favoriteMenu",
+          JSON.stringify([...favList, likeMenu])
+        );
+      }
+    }
   };
   const icons = [
     {
@@ -122,10 +151,13 @@ const MenuElement = ({ name }) => {
       <div className="me-3">
         <div className="flex justify-center items-center">
           <button
-            className="rounded-full bg-secondaryGreen-50 p-3 cursor-pointer"
-            onClick={() => handleClick(useIcon.linkTo)}
+            className="relative rounded-full bg-secondaryGreen-50 p-3 cursor-pointer"
+            onClick={() => handleClick(name)}
           >
             {useIcon && useIcon.icon}
+            <div className="absolute top-0 right-0">
+              {star ? <FaStar /> : <FaRegStar />}
+            </div>
           </button>
         </div>
         <p className="text-center text-xs text-[0.6rem] pt-2 ">{name}</p>
@@ -134,4 +166,4 @@ const MenuElement = ({ name }) => {
   );
 };
 
-export default MenuElement;
+export default HomeMenuElement;
