@@ -12,7 +12,7 @@ const EventCard = ({ data, reFetch }) => {
   const [like, setLike] = useState(false);
   useEffect(() => {
     let liked_lists = JSON.parse(localStorage.getItem('liked_activity'));
-    const idx = liked_lists.findIndex((id) => id === data.activity_id);
+    const idx = liked_lists?.findIndex((id) => id === data.activity_id);
     setLike(idx !== -1);
   }, []);
   const handleLike = async () => {
@@ -60,8 +60,11 @@ const EventCard = ({ data, reFetch }) => {
         </div>
         <p className="my-2 font-bold">{data?.activity_name}</p>
         <p className="mb-2 font-[300] text-sm">
-          {data?.register_date?.start_date ||
-            dayjs(new Date()).format('DD/MM/YYYY')}
+          {data?.register_date?.start_date
+            ? dayjs(new Date(data?.register_date?.start_date)).format(
+                'DD/MM/YYYY'
+              )
+            : dayjs(new Date()).format('DD/MM/YYYY')}
         </p>
         <div
           className="relative bg-secondaryGreen-500 w-full text-center flex justify-center itens-center p-2 rounded-b-lg"

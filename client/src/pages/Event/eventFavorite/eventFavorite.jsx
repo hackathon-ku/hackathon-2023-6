@@ -25,18 +25,23 @@ const EventFavorite = () => {
   async function fetchData() {
     let liked_lists = JSON.parse(localStorage.getItem('liked_activity'));
     setData([]);
-    liked_lists.map(async (id) => {
+    liked_lists?.map(async (id) => {
       try {
-        const res = await http.get(`/activity/${id}`);
+        let res = await http.get(`/activity/${id}`);
         setData((prev) => [...prev, res.data]);
       } catch (err) {
         console.log(err);
       }
     });
+    // if (menu !== '') {
+    //   const datas = data.filter((item) => item.activity_type === menu);
+    //   setData(datas);
+    // }
   }
+
   async function reFetch() {
     console.log('refetch');
-    fetchData();
+    // fetchData();
   }
 
   return (
@@ -51,7 +56,7 @@ const EventFavorite = () => {
         </div>
 
         <div className="flex justify-end my-2">
-          <Box sx={{ minWidth: 120 }}>
+          <Box sx={{ width: 150 }}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">หมวดหมู่</InputLabel>
               <Select
@@ -61,23 +66,27 @@ const EventFavorite = () => {
                 label="Age"
                 onChange={handleChange}
               >
-                <MenuItem value={10}>menu1</MenuItem>
-                <MenuItem value={20}>menu2</MenuItem>
-                <MenuItem value={30}>menu3</MenuItem>
+                <MenuItem value={'university'}>กิจกรรมมหาลัย</MenuItem>
+                <MenuItem value={'ability'}>
+                  กิจกรรมด้านพัฒนาทักษะวิชาการเเละวิชาชีพ
+                </MenuItem>
+                <MenuItem value={'social'}>กิจกรรมเพื่อสังคม</MenuItem>
               </Select>
             </FormControl>
           </Box>
         </div>
         <div>
-          {data?.map((activity) => {
-            return (
-              <EventCard
-                data={activity}
-                key={activity.activity_id}
-                reFetch={reFetch}
-              />
-            );
-          })}
+          {data
+            ? data?.map((activity) => {
+                return (
+                  <EventCard
+                    data={activity}
+                    key={activity.activity_id}
+                    reFetch={reFetch}
+                  />
+                );
+              })
+            : ''}
         </div>
       </div>
     </div>

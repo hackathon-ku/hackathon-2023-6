@@ -1,7 +1,7 @@
-import React from "react";
-import { AiOutlineFileSearch } from "react-icons/ai";
-import { LiaIdCardAltSolid } from "react-icons/lia";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { AiOutlineFileSearch } from 'react-icons/ai';
+import { LiaIdCardAltSolid } from 'react-icons/lia';
+import { useNavigate } from 'react-router-dom';
 
 const FooterSecondary = ({
   leftPageName,
@@ -17,21 +17,22 @@ const FooterSecondary = ({
 
   const icons = [
     {
-      pageName: "Registration Report",
+      pageName: 'Registration Report',
       icon: <LiaIdCardAltSolid size={30} />,
     },
     {
-      pageName: "Subject Search",
+      pageName: 'Subject Search',
       icon: <AiOutlineFileSearch size={30} />,
     },
     {
-      pageName: "Activity Transcript",
+      pageName: 'Activity Transcript',
       icon: <AiOutlineFileSearch size={30} />,
     },
     {
-      pageName: "KU Event",
+      pageName: 'KU Event',
       icon: <AiOutlineFileSearch size={30} />,
     },
+    
   ];
 
   const iconUse = (page) => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import HeaderSecondary from '../../../layout/Header/headerSecondary';
 import FooterSecondary from '../../../layout/Footer/footerSecondary';
 import { Input } from '@material-tailwind/react';
@@ -13,6 +13,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import EventCard from '../eventCard/eventCard.jsx';
+import http from '../../../api/http';
 
 import Calendar from 'react-calendar';
 
@@ -22,20 +23,64 @@ import 'react-calendar/dist/Calendar.css';
 
 const SubjectSearch = () => {
   const [menu, setMenu] = React.useState('');
+  const [sort, setSort] = React.useState('today');
+
+  const [date, setDate] = useState(dayjs(new Date()));
+
+  const [data, setData] = useState([]);
+  const [search, setSearch] = useState('');
+
+  async function fetchData() {
+    try {
+      if (sort === 'today') {
+        // setDate(dayjs(new Date()));
+      }
+      const requestedDate = new Date(date).setUTCHours(0, 0, 0, 0);
+      const endOfDay = new Date(date).setUTCHours(23, 59, 59, 59);
+      console.log(new Date(requestedDate).toISOString());
+      // if (date) {
+      //   filter = { register_date: { start_date: date } };
+      // }
+      // if(activity_type){
+      //   filter['activity_type'] = activity_type
+      // }
+      const res = await http.post('/activity', {
+        searchText: search,
+        filter: {},
+      });
+      res.data = res.data.filter(
+        (item) =>
+          new Date(item.register_date.start_date) >= requestedDate &&
+          new Date(item.register_date.start_date) < endOfDay
+      );
+      if (menu !== '') {
+        res.data = res.data.filter((item) => item.activity_type === menu);
+        console.log(res.data);
+      }
+      setData(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  useEffect(() => {
+    fetchData();
+  }, [search, date, sort, menu]);
 
   const handleChange = (event) => {
     setMenu(event.target.value);
   };
 
-  const [date, setDate] = useState(dayjs('2022-04-17'));
+  const handleChange2 = (event) => {
+    setSort(event.target.value);
+  };
   console.log(date.$d);
 
-  const data = [
-    { activity_name: 'Event 1', activity_id: '1' },
-    { activity_name: 'Event 2', activity_id: '2' },
-    { activity_name: 'Event 3', activity_id: '3' },
-    { activity_name: 'Event 4', activity_id: '4' },
-  ];
+  // const data = [
+  //   { activity_name: 'Event 1', activity_id: '1' },
+  //   { activity_name: 'Event 2', activity_id: '2' },
+  //   { activity_name: 'Event 3', activity_id: '3' },
+  //   { activity_name: 'Event 4', activity_id: '4' },
+  // ];
   return (
     <>
       <HeaderSecondary
@@ -45,34 +90,33 @@ const SubjectSearch = () => {
         favPage={'/menu/eventFavorite'}
       />
 
-      <div className="m-3 h-[70vh] overflow-scroll">
+      <div className="m-3 h-[80vh] overflow-scroll">
         <div>
-          <Input label="Search" />
+          <Input label="Search" onChange={(e) => setSearch(e.target.value)} />
         </div>
         <div className="flex justify-between">
           <div className="flex justify-start my-2">
-            <Box sx={{ minWidth: 200 }}>
+            <Box sx={{ width: 200 }}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">New Event</InputLabel>
+                <InputLabel id="demo-simple-select-label">Feed</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={menu}
+                  value={sort}
                   label="Age"
-                  onChange={handleChange}
+                  onChange={handleChange2}
                 >
-                  <MenuItem value={10}>menu1</MenuItem>
-                  <MenuItem value={20}>menu2</MenuItem>
-                  <MenuItem value={30}>menu3</MenuItem>
+                  <MenuItem value={'today'}>Today Event</MenuItem>
+                  <MenuItem value={'new'}>New Event</MenuItem>
                 </Select>
               </FormControl>
             </Box>
           </div>
 
           <div className="flex justify-end my-2">
-            <Box sx={{ minWidth: 150 }}>
+            <Box sx={{ width: 150 }}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Menu</InputLabel>
+                <InputLabel id="demo-simple-select-label">หมวดหมู่</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -80,9 +124,11 @@ const SubjectSearch = () => {
                   label="Age"
                   onChange={handleChange}
                 >
-                  <MenuItem value={10}>menu1</MenuItem>
-                  <MenuItem value={20}>menu2</MenuItem>
-                  <MenuItem value={30}>menu3</MenuItem>
+                  <MenuItem value={'university'}>กิจกรรมมหาลัย</MenuItem>
+                  <MenuItem value={'ability'}>
+                    กิจกรรมด้านพัฒนาทักษะวิชาการเเละวิชาชีพ
+                  </MenuItem>
+                  <MenuItem value={'social'}>กิจกรรมเพื่อสังคม</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -100,11 +146,6 @@ const SubjectSearch = () => {
           return <EventCard data={activity} key={activity.activity_id} />;
         })}
       </div>
-
-      <FooterSecondary
-        leftPage={'/menu/registrationReport'}
-        rightPage={'/menu/subjectSearch'}
-      />
     </>
   );
 };
