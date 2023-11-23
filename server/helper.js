@@ -7,7 +7,7 @@ export function verifyAccessToken(req, res, next) {
   if (!req.headers['authorization']) {
     return res.status(401).send({ message: 'Access Token not found.' });
   }
-  console.log(req.headers);
+
   const authHeader = req.headers['authorization'];
   const token = authHeader.split(' ')[1];
   jwt.verify(token, process.env.JWT, (err, payload) => {

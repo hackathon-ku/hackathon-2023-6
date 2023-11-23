@@ -20,8 +20,8 @@ const ActivityCategory = () => {
     try {
       const res = await http.get(`/subject/user/${userId}`);
       setSubjects(res.data);
-      console.log("use res:", res.data);
-      console.log(res.data.general.wellness);
+
+
 
       setWellness(res.data.general.wellness);
       setEntrepreneurship(res.data.general.entrepreneurship);
@@ -34,7 +34,7 @@ const ActivityCategory = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
-    console.log(user.std_id);
+
     setUserId(user.std_id);
 
     fetchMyData();

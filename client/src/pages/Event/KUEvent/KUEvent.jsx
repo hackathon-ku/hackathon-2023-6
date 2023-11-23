@@ -37,7 +37,6 @@ const SubjectSearch = () => {
       }
       const requestedDate = new Date(date).setUTCHours(0, 0, 0, 0);
       const endOfDay = new Date(date).setUTCHours(23, 59, 59, 59);
-      console.log(new Date(requestedDate).toISOString());
       // if (date) {
       //   filter = { register_date: { start_date: date } };
       // }
@@ -55,7 +54,6 @@ const SubjectSearch = () => {
       );
       if (menu !== '') {
         res.data = res.data.filter((item) => item.activity_type === menu);
-        console.log(res.data);
       }
       setData(res.data);
     } catch (err) {
@@ -73,7 +71,6 @@ const SubjectSearch = () => {
   const handleChange2 = (event) => {
     setSort(event.target.value);
   };
-  console.log(date.$d);
 
   // const data = [
   //   { activity_name: 'Event 1', activity_id: '1' },

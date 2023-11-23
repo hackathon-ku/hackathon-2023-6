@@ -24,7 +24,7 @@ const SubjectFavorite = () => {
         filter: {},
       });
       setFavFetch(res.data);
-      console.log(res);
+
     } catch (error) {
       console.log(error);
     }
@@ -40,7 +40,7 @@ const SubjectFavorite = () => {
       setSubjects([]);
     } else {
       setSubjects(favFetch.filter((item) => favList.includes(item.subject_id)));
-      console.log("subject", subjects);
+
     }
   }, [favFetch]);
 

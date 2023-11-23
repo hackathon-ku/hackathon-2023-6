@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { IoSettingsOutline } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
-import MenuElement from "../../Menu/MenuElement/menuElement";
+import React, { useEffect, useState } from 'react';
+import { IoSettingsOutline } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
+import MenuElement from '../../Menu/MenuElement/menuElement';
 
 const HomeQuickMenu = () => {
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    navigate("/editHomeMenu");
+    navigate('/editHomeMenu');
   };
 
   const [favMenu, setFavMenu] = useState([]);
 
   useEffect(() => {
-    let fav = JSON.parse(localStorage.getItem("favoriteMenu"));
+    let fav = JSON.parse(localStorage.getItem('favoriteMenu'));
     setFavMenu(fav);
   }, []);
 
@@ -36,11 +36,11 @@ const HomeQuickMenu = () => {
       </div>
 
       <div>
-        {favMenu.length < 1 ? (
+        {favMenu && favMenu?.length < 1 ? (
           <div className="m-4 mx-8 text-gray-600">Quick Menu not set</div>
         ) : (
           <div className="grid grid-cols-5 m-4">
-            {favMenu.map((item) => (
+            {favMenu?.map((item) => (
               <MenuElement name={item} />
             ))}
           </div>

@@ -23,7 +23,7 @@ const SubjectSearch = () => {
         searchText: searchText,
         filter: {},
       });
-      console.log(res);
+
       setSubject(res.data);
     } catch (error) {
       console.log(error);

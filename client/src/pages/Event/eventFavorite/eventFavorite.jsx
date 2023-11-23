@@ -40,7 +40,6 @@ const EventFavorite = () => {
   }
 
   async function reFetch() {
-    console.log('refetch');
     // fetchData();
   }
 

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 import {
   Accordion,
   AccordionHeader,
   AccordionBody,
-} from "@material-tailwind/react";
-import http from "../../../api/http";
+} from '@material-tailwind/react';
+import http from '../../../api/http';
 
 const SubjectCategory = () => {
   const [subjects, setSubjects] = useState([]);
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState('');
 
   const [wellness, setWellness] = useState([]);
   const [entrepreneurship, setEntrepreneurship] = useState([]);
@@ -19,10 +19,12 @@ const SubjectCategory = () => {
 
   const fetchMyData = async () => {
     try {
-      const res = await http.get(`/subject/user/${userId}`);
+
+      const user = JSON.parse(localStorage.getItem('userInfo'));
+      const res = await http.get(`/subject/user/${user.std_id}`);
       setSubjects(res.data);
-      console.log("use res:", res.data);
-      console.log(res.data.general.wellness);
+
+
 
       setWellness(res.data.general.wellness);
       setEntrepreneurship(res.data.general.entrepreneurship);
@@ -35,8 +37,8 @@ const SubjectCategory = () => {
   };
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("userInfo"));
-    console.log(user.std_id);
+    const user = JSON.parse(localStorage.getItem('userInfo'));
+
     setUserId(user.std_id);
 
     fetchMyData();
@@ -61,8 +63,8 @@ const SubjectCategory = () => {
           <AccordionHeader
             className={`${
               wellness.is_pass === true
-                ? "bg-secondaryGreen-200"
-                : "bg-[#ffb6b6]"
+                ? 'bg-secondaryGreen-200'
+                : 'bg-[#ffb6b6]'
             } font-normal text-sm flex justify-between border`}
             onClick={() => handleOpen(1)}
           >
@@ -81,15 +83,15 @@ const SubjectCategory = () => {
           <AccordionBody
             className={`${
               wellness.is_pass === true
-                ? "bg-secondaryGreen-50"
-                : "bg-[#ffd9d9]"
+                ? 'bg-secondaryGreen-50'
+                : 'bg-[#ffd9d9]'
             } font-normal text-sm `}
           >
             <div className="m-2 w-full">
               {wellness?.subject?.map((item) => (
                 <div className="grid grid-cols-4 my-1">
                   <div className="col-span-3">
-                    <span>{item.subject_id}</span>{" "}
+                    <span>{item.subject_id}</span>{' '}
                     <span>{item.subject_name_th}</span>
                   </div>
                   <div className="col-span-1">
@@ -105,8 +107,8 @@ const SubjectCategory = () => {
           <AccordionHeader
             className={`${
               entrepreneurship.is_pass === true
-                ? "bg-secondaryGreen-200"
-                : "bg-[#ffb6b6]"
+                ? 'bg-secondaryGreen-200'
+                : 'bg-[#ffb6b6]'
             } font-normal text-sm flex justify-between border`}
             onClick={() => handleOpen(2)}
           >
@@ -125,15 +127,15 @@ const SubjectCategory = () => {
           <AccordionBody
             className={`${
               entrepreneurship.is_pass === true
-                ? "bg-secondaryGreen-50"
-                : "bg-[#ffd9d9]"
+                ? 'bg-secondaryGreen-50'
+                : 'bg-[#ffd9d9]'
             } font-normal text-sm `}
           >
             <div className="m-2 w-full">
               {entrepreneurship?.subject?.map((item) => (
                 <div className="grid grid-cols-4 my-1">
                   <div className="col-span-3">
-                    <span>{item.subject_id}</span>{" "}
+                    <span>{item.subject_id}</span>{' '}
                     <span>{item.subject_name_th}</span>
                   </div>
                   <div className="col-span-1">
@@ -149,8 +151,8 @@ const SubjectCategory = () => {
           <AccordionHeader
             className={`${
               citizen.is_pass === true
-                ? "bg-secondaryGreen-200"
-                : "bg-[#ffb6b6]"
+                ? 'bg-secondaryGreen-200'
+                : 'bg-[#ffb6b6]'
             } font-normal text-sm flex justify-between border`}
             onClick={() => handleOpen(3)}
           >
@@ -171,14 +173,14 @@ const SubjectCategory = () => {
           </AccordionHeader>
           <AccordionBody
             className={`${
-              citizen.is_pass === true ? "bg-secondaryGreen-50" : "bg-[#ffd9d9]"
+              citizen.is_pass === true ? 'bg-secondaryGreen-50' : 'bg-[#ffd9d9]'
             } font-normal text-sm `}
           >
             <div className="m-2 w-full">
               {citizen?.subject?.map((item) => (
                 <div className="grid grid-cols-4 my-1">
                   <div className="col-span-3">
-                    <span>{item.subject_id}</span>{" "}
+                    <span>{item.subject_id}</span>{' '}
                     <span>{item.subject_name_th}</span>
                   </div>
                   <div className="col-span-1">
@@ -194,8 +196,8 @@ const SubjectCategory = () => {
           <AccordionHeader
             className={`${
               language.is_pass === true
-                ? "bg-secondaryGreen-200"
-                : "bg-[#ffb6b6]"
+                ? 'bg-secondaryGreen-200'
+                : 'bg-[#ffb6b6]'
             } font-normal text-sm flex justify-between border`}
             onClick={() => handleOpen(4)}
           >
@@ -216,15 +218,15 @@ const SubjectCategory = () => {
           <AccordionBody
             className={`${
               language.is_pass === true
-                ? "bg-secondaryGreen-50"
-                : "bg-[#ffd9d9]"
+                ? 'bg-secondaryGreen-50'
+                : 'bg-[#ffd9d9]'
             } font-normal text-sm `}
           >
             <div className="m-2 w-full">
               {language?.subject?.map((item) => (
                 <div className="grid grid-cols-4 my-1">
                   <div className="col-span-3">
-                    <span>{item.subject_id}</span>{" "}
+                    <span>{item.subject_id}</span>{' '}
                     <span>{item.subject_name_th}</span>
                   </div>
                   <div className="col-span-1">
@@ -240,8 +242,8 @@ const SubjectCategory = () => {
           <AccordionHeader
             className={`${
               aesthetics.is_pass === true
-                ? "bg-secondaryGreen-200"
-                : "bg-[#ffb6b6]"
+                ? 'bg-secondaryGreen-200'
+                : 'bg-[#ffb6b6]'
             } font-normal text-sm flex justify-between border`}
             onClick={() => handleOpen(5)}
           >
@@ -260,15 +262,15 @@ const SubjectCategory = () => {
           <AccordionBody
             className={`${
               aesthetics.is_pass === true
-                ? "bg-secondaryGreen-50"
-                : "bg-[#ffd9d9]"
+                ? 'bg-secondaryGreen-50'
+                : 'bg-[#ffd9d9]'
             } font-normal text-sm `}
           >
             <div className="m-2 w-full">
               {aesthetics?.subject?.map((item) => (
                 <div className="grid grid-cols-4 my-1">
                   <div className="col-span-3">
-                    <span>{item.subject_id}</span>{" "}
+                    <span>{item.subject_id}</span>{' '}
                     <span>{item.subject_name_th}</span>
                   </div>
                   <div className="col-span-1">
