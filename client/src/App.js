@@ -6,6 +6,10 @@ import MenuIndex from './pages/Menu/menuIndex';
 import RegisIndex from './pages/RegisterationReport/regisIndex';
 import SubjectSearch from './pages/RegisterationReport/subjectSearch/subjectSearch';
 import SubjectFavorite from './pages/RegisterationReport/subjectFavorite/subjectFavorite';
+import KUEvent from './pages/Event/KUEvent/KUEvent.jsx';
+import EventFavorite from './pages/Event/eventFavorite/eventFavorite.jsx';
+import EventDetail from './pages/Event/eventDetail/eventDetail.jsx';
+
 import Login from './pages/Login/login';
 
 function App() {
@@ -20,6 +24,9 @@ function App() {
           <Route path="/menu/registrationReport" element={<RegisIndex />} />
           <Route path="/menu/subjectSearch" element={<SubjectSearch />} />
           <Route path="/menu/subjectFavorite" element={<SubjectFavorite />} />
+          <Route path="/menu/kuevent" element={<KUEvent />} />
+          <Route path="/menu/eventFavorite" element={<EventFavorite />} />
+          <Route path="/menu/kuevent/:activity_id" element={<EventDetail />} />
         </Routes>
       </BrowserRouter>
     </>
