@@ -32,6 +32,7 @@ export const getActivityBy = async (req, res, next) => {
     if (!filter) {
       filter = {};
     }
+
     const activities = await Activity.find({
       $and: [
         {
@@ -43,6 +44,7 @@ export const getActivityBy = async (req, res, next) => {
         { ...filter },
       ],
     });
+    // console.log(activities);
     res.status(200).json(activities);
   } catch (error) {
     next(error);

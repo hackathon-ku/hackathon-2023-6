@@ -10,10 +10,10 @@ import {
 const router = express.Router();
 
 //POST
-router.post('/', createActivity);
+router.post('/create', createActivity);
 
 //GET BY FILTER
-router.get('/', getActivityBy);
+router.post('/', getActivityBy);
 
 //GET BY ID
 router.get('/:activity_id', getActivityById);

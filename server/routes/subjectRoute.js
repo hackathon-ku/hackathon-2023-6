@@ -8,7 +8,7 @@ import {
 const router = express.Router();
 
 //GET BY FILTER
-router.get('/', getSubjectBy);
+router.post('/', getSubjectBy);
 
 //GET BY ID
 router.get('/:subject_id', getSubjectId);

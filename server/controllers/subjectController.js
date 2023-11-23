@@ -38,7 +38,7 @@ export const getSubjectBy = async (req, res, next) => {
 
 export const getUserSubjectRegistered = async (req, res, next) => {
   try {
-    const UserSubjectRegistered = await userSubjectRegistered.findOne({
+    let UserSubjectRegistered = await userSubjectRegistered.findOne({
       std_id: req.params.std_id,
     });
     res.status(200).json(UserSubjectRegistered);

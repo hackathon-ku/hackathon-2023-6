@@ -2,12 +2,12 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const ActivitySchema = new Schema({
-  std_id: { type: String, require: true },
-  activity_id: { type: String, require: true },
-  activity_name: { type: String, required: true },
-  activity_type: { type: String, required: true },
-  activity_group: { type: String, required: true },
-  hours: { type: Number, required: true },
+  std_id: { type: String },
+  activity_id: { type: String },
+  activity_name: { type: String },
+  activity_type: { type: String },
+  activity_group: { type: String },
+  hours: { type: Number },
   location: { type: String },
   detail: { type: String },
   register_date: {
