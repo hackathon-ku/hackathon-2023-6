@@ -1,12 +1,17 @@
 import React from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { GoBookmarkFill } from "react-icons/go";
 
-const HeaderSecondary = ({ headerName }) => {
+const HeaderSecondary = ({ headerName, previousPage, favAble, favPage }) => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-    navigate(-1);
+    navigate(previousPage);
+  };
+
+  const handleClick = (page) => {
+    navigate(page);
   };
 
   return (
@@ -19,7 +24,15 @@ const HeaderSecondary = ({ headerName }) => {
         <h3>{headerName}</h3>
       </div>
 
-      <div></div>
+      <div>
+        {favAble && (
+          <div>
+            <button onClick={() => handleClick(favPage)}>
+              <GoBookmarkFill size={30} />
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

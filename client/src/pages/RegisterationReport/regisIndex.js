@@ -1,11 +1,15 @@
 import React from "react";
 import HeaderSecondary from "../../layout/Header/headerSecondary";
-import { useParams } from "react-router-dom";
+import SubjectCategory from "./subjectCategory/subjectCategory";
+import FooterSecondary from "../../layout/Footer/footerSecondary";
 
 const RegisIndex = () => {
   return (
     <>
-      <HeaderSecondary headerName={"Registration Report"} />
+      <HeaderSecondary
+        headerName={"Registration Report"}
+        previousPage={"/menu"}
+      />
       <div className="grid grid-cols-2 m-4 ">
         <div className="flex justify-center bg-primaryGreen-50 rounded-s-md p-1">
           หน่วยกิจสะสม
@@ -14,6 +18,15 @@ const RegisIndex = () => {
           57
         </div>
       </div>
+
+      <SubjectCategory />
+
+      <SubjectCategory />
+
+      <FooterSecondary
+        leftPage={"/menu/registrationReport"}
+        rightPage={"/menu/subjectSearch"}
+      />
     </>
   );
 };
