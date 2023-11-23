@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/Home/homePage';
 import MenuIndex from './pages/Menu/menuIndex';
 import RegisIndex from './pages/RegisterationReport/regisIndex';
+import SubjectSearch from './pages/RegisterationReport/subjectSearch/subjectSearch';
+import SubjectFavorite from './pages/RegisterationReport/subjectFavorite/subjectFavorite';
 import Login from './pages/Login/login';
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
           <Route path="/menu" element={<MenuIndex />} />
           <Route path="/community" element={<RegisIndex />} />
           <Route path="/menu/registrationReport" element={<RegisIndex />} />
+          <Route path="/menu/subjectSearch" element={<SubjectSearch />} />
+          <Route path="/menu/subjectFavorite" element={<SubjectFavorite />} />
         </Routes>
       </BrowserRouter>
     </>
