@@ -8,8 +8,17 @@ import { GoBookmarkFill } from "react-icons/go";
 
 import { GoBookmark } from "react-icons/go";
 
-const SubjectElement = () => {
+const SubjectElement = ({ subjectInfo }) => {
   const [favSubject, setFavSubject] = useState(false);
+
+  useEffect(() => {
+    const favCheck = JSON.parse(localStorage.getItem("favoriteSubject"));
+    if (favCheck) {
+      if (favCheck.find((item) => item === subjectInfo.subject_id)) {
+        setFavSubject(true);
+      }
+    }
+  });
 
   const handleFav = (subjectId) => {
     let favList = JSON.parse(localStorage.getItem("favoriteSubject"));
@@ -33,7 +42,7 @@ const SubjectElement = () => {
     }
   };
 
-  const [open, setOpen] = React.useState(1);
+  const [open, setOpen] = React.useState(0);
 
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
@@ -41,22 +50,25 @@ const SubjectElement = () => {
     <>
       <Accordion open={open === 1}>
         <AccordionHeader
-          className="font-normal text-sm flex justify-between border"
+          className="font-normal text-sm border"
           onClick={() => handleOpen(1)}
         >
-          <div className="flex gap-3 ms-1">
-            <span>01999033</span> <span>Arts of Living</span>
-          </div>
+          <div className="grid grid-cols-3 w-full">
+            <div className="col-span-2 flex gap-3 ms-1">
+              <span>{subjectInfo.subject_id}</span>{" "}
+              <span>{subjectInfo.subject_name_th}</span>
+            </div>
 
-          <div>
-            <span>3 หน่วยกิต</span>
+            <div className="col-span-1 flex justify-end">
+              <span>{subjectInfo.credit} หน่วยกิต</span>
+            </div>
           </div>
         </AccordionHeader>
         <AccordionBody className="bg-greyCustom-100 font-normal text-sm ">
           <div className="flex justify-between m-2">
             <div>Information</div>
             <div>
-              <button onClick={() => handleFav()}>
+              <button onClick={() => handleFav(subjectInfo.subject_id)}>
                 {favSubject ? (
                   <GoBookmarkFill size={20} />
                 ) : (
@@ -65,7 +77,28 @@ const SubjectElement = () => {
               </button>
             </div>
           </div>
-          <div className="m-2">Information</div>
+          <div className="m-2">
+            <p>
+              <span className="font-bold">ชื่อวิชาภาษาไทย: </span>
+              <span>{subjectInfo.subject_name_th}</span>
+            </p>
+            <p>
+              <span className="font-bold">ชื่อวิชาภาษาอังกฤษ: </span>
+              <span>{subjectInfo.subject_name_en}</span>
+            </p>
+            <p>
+              <span className="font-bold">ประเภทวิชา: </span>
+              <span>general</span>
+            </p>
+            <p>
+              <span className="font-bold">หมวดหมู่วิชา: </span>
+              <span>{subjectInfo.subject_group}</span>
+            </p>
+            <p>
+              <span className="font-bold">หน่วยกิจ: </span>
+              <span>{subjectInfo.credit}</span>
+            </p>
+          </div>
         </AccordionBody>
       </Accordion>
     </>
