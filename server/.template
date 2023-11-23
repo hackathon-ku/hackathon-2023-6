@@ -13,7 +13,8 @@
   "major_id":"09",
   "campus_id":"1",
   "email":"rawitch.p@ku.th",
-  "password": "$2a$10$Vr68Glkd/4ZXAPAWaMagT.Ai6J0JxCvrGKzhf2kNOaB9ZHKM8660."  // admin123
+  "password": "$2a$10$Vr68Glkd/4ZXAPAWaMagT.Ai6J0JxCvrGKzhf2kNOaB9ZHKM8660.",
+  "role": "admin"  // admin123
 }
 
 // Course Template
