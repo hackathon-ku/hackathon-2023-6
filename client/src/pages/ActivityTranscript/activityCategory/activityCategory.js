@@ -46,8 +46,8 @@ const ActivityCategory = () => {
 
   return (
     <>
-      <Accordion open={open === 2} className="m-2">
-        <div className="flex gap-0 mx-2" onClick={() => handleOpen(2)}>
+      <Accordion open={open === 1} className="m-2">
+        <div className="flex gap-0 mx-2" onClick={() => handleOpen(1)}>
           <AccordionHeader
             className="bg-blue-900 rounded-tl-md font-normal text-sm"
             style={{ width: "70%" }}
@@ -101,16 +101,16 @@ const ActivityCategory = () => {
         </AccordionBody>
         <AccordionBody className="bg-greyCustom-100 font-normal text-sm mx-2">
           <div className="m-2">
-            <div>
-              <span>ทำความสะอาดโรงเรียน</span>
+            <div className="">
+              <span>ทำความสะอาดโรงเรียน </span>
               <span>14 ชั่วโมง</span>
             </div>
           </div>
         </AccordionBody>
       </Accordion>
 
-      <Accordion open={open === 2} className="m-2">
-        <div className="flex gap-0 mx-2" onClick={() => handleOpen(2)}>
+      <Accordion open={open === 3} className="m-2">
+        <div className="flex gap-0 mx-2" onClick={() => handleOpen(3)}>
           <AccordionHeader
             className="bg-blue-900 rounded-tl-md font-normal text-sm"
             style={{ width: "70%" }}
@@ -138,8 +138,8 @@ const ActivityCategory = () => {
         </AccordionBody>
       </Accordion>
 
-      <Accordion open={open === 2} className="m-2">
-        <div className="flex gap-0 mx-2" onClick={() => handleOpen(2)}>
+      <Accordion open={open === 4} className="m-2">
+        <div className="flex gap-0 mx-2" onClick={() => handleOpen(4)}>
           <AccordionHeader
             className="bg-blue-900 rounded-tl-md font-normal text-sm"
             style={{ width: "70%" }}
@@ -167,8 +167,8 @@ const ActivityCategory = () => {
         </AccordionBody>
       </Accordion>
 
-      <Accordion open={open === 2} className="m-2">
-        <div className="flex gap-0 mx-2" onClick={() => handleOpen(2)}>
+      <Accordion open={open === 5} className="m-2">
+        <div className="flex gap-0 mx-2" onClick={() => handleOpen(5)}>
           <AccordionHeader
             className="bg-blue-900 rounded-tl-md font-normal text-sm"
             style={{ width: "70%" }}
@@ -196,8 +196,8 @@ const ActivityCategory = () => {
         </AccordionBody>
       </Accordion>
 
-      <Accordion open={open === 2} className="m-2">
-        <div className="flex gap-0 mx-2" onClick={() => handleOpen(2)}>
+      <Accordion open={open === 6} className="m-2">
+        <div className="flex gap-0 mx-2" onClick={() => handleOpen(6)}>
           <AccordionHeader
             className="bg-blue-900 rounded-tl-md font-normal text-sm"
             style={{ width: "70%" }}
