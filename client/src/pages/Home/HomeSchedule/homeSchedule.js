@@ -8,7 +8,7 @@ const HomeSchedule = () => {
       <div className="m-2 flex">
         <div className="bg-[#d9d9d9] p-1"></div>
         <div className="bg-[#d5f2df] flex justify-between w-full p-2">
-          <div>KU Event</div>
+          <div>Class Schedule</div>
           <div className="flex gap-1">
             <button className="mt-1">
               <FaAngleRight />

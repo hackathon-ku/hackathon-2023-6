@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HeaderSecondary from "../../../layout/Header/headerSecondary";
 
 import { Input } from "@material-tailwind/react";
@@ -9,8 +9,41 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import http from "../../../api/http";
 
 const SubjectFavorite = () => {
+  const [subjects, setSubjects] = useState([]);
+  const [favFetch, setFavFetch] = useState([]);
+
+  const [searchText, setSearchText] = useState("");
+
+  const fetchMix = async () => {
+    try {
+      const res = await http.post("/subject", {
+        searchText: searchText,
+        filter: {},
+      });
+      setFavFetch(res.data);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMix();
+  }, [searchText]);
+
+  useEffect(() => {
+    const favList = JSON.parse(localStorage.getItem("favoriteSubject"));
+    if (!favList) {
+      setSubjects([]);
+    } else {
+      setSubjects(favFetch.filter((item) => favList.includes(item.subject_id)));
+      console.log("subject", subjects);
+    }
+  }, [favFetch]);
+
   const [menu, setMenu] = React.useState("");
 
   const handleChange = (event) => {
@@ -25,13 +58,16 @@ const SubjectFavorite = () => {
       />
       <div className="m-3">
         <div>
-          <Input label="Search" />
+          <Input
+            label="Search"
+            onChange={(e) => setSearchText(e.target.value)}
+          />
         </div>
 
         <div className="flex justify-end my-2">
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth size="small">
-              <InputLabel id="demo-simple-select-label">Menu</InputLabel>
+              <InputLabel id="demo-simple-select-label">หมวดหมู่</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -39,17 +75,25 @@ const SubjectFavorite = () => {
                 label="Age"
                 onChange={handleChange}
               >
-                <MenuItem value={10}>menu1</MenuItem>
-                <MenuItem value={20}>menu2</MenuItem>
-                <MenuItem value={30}>menu3</MenuItem>
+                <MenuItem value={10}>อยู่ดีมีสุข</MenuItem>
+                <MenuItem value={20}>ศาสตร์แห่งผู้ประกอบการ</MenuItem>
+                <MenuItem value={30}>พลเมืองไทยและพลเมืองโลก</MenuItem>
+                <MenuItem value={40}>กลุ่มสาระภาษากับการสื่อสาร</MenuItem>
+                <MenuItem value={50}>สุนทรียศาสตร์</MenuItem>
               </Select>
             </FormControl>
           </Box>
         </div>
 
-        <div>
-          <SubjectElement />
-        </div>
+        {subjects.length < 1 ? (
+          <div>No favorite subject</div>
+        ) : (
+          <div>
+            {subjects.map((item) => (
+              <SubjectElement subjectInfo={item} />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
